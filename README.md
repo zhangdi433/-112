@@ -11,3 +11,97 @@
 编写单元测试驱动开发从调用者的角度去设计代码，让代码易于调用和测试，特别是使用TDD测试驱动开发的方式，开发者会在开发中不断调整和重构，让代码有一个较好的结构和设计，并解除软件中的耦合。
 可快速持续回归。
 结合持续集成，任何代码的修改都可以快速回归，而不是需要通过接口测试覆盖可能修改的路径，后者太麻烦不知能，也不一定每次都能覆盖所有路径
+package Test;
+
+public class test_1 {
+	public static void main(String[] args) {
+		int[] chengji = {-1, -15, -5586, 5956,100,95,48,85,6,21,35,48,78,96,25};
+     	printArr(chengji);
+		bubbleArray(chengji);
+		System.out.println();
+		printArr(chengji);
+//		System.out.print(chengji);
+	}
+		private static void printArr(int[] chengji) {
+			for(int i = 0 ; i< chengji.length ; i++) {
+				 System.out.print(chengji[i]+ " ");
+			}
+		}
+	
+	
+	public static String printArray(int[] chengji) {
+		String s = "";
+		for(int i = 0 ; i< chengji.length ; i++) {
+			 String.join(s, chengji[i]+ " ");
+		}
+		return s ;
+	}
+	
+	public static void bubbleArray(int chengji[]) {
+		for(int i = 0; i<chengji.length-1 ;i++) {
+			for(int j = 0;j<chengji.length - i -1 ;j++) {
+				if(chengji[j]>chengji[j+1]) {
+					int temp = chengji[j];
+					chengji[j] = chengji[j+1];
+					chengji[j+1] = temp ;
+				}
+			}
+		}
+	}
+  package Test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Test {
+
+	@Test
+	public void testBubbleArray1() {
+		int[] arr1 = {100,95,99,84,26,78,96,25};
+		int[] arrend = {25,26,78,84,95,96,99,100};
+		test_1.bubbleArray(arr1);
+		test_1.printArray(arr1);
+		assertTrue(test_1.printArray(arr1).equals(test_1.printArray(arrend)));
+				
+	}
+
+	@Test
+	public void testBubbleArray2() {
+		int[] arr2 = {100,95,99,15,43,35,48,78,96,25};
+		int[] arrend = {15, 25, 35 ,43 ,48, 78, 95, 96, 99, 100};
+		test_1.bubbleArray(arr2);
+		test_1.printArray(arr2);
+		assertTrue(test_1.printArray(arr2).equals(test_1.printArray(arrend)));
+		
+	}
+
+	@Test
+	public void testBubbleArray3() {
+		int[] arr3 = {100,95,25};
+		int[] arrend = {25,95,100};
+		test_1.bubbleArray(arr3);
+		test_1.printArray(arr3);
+		assertTrue(test_1.printArray(arr3).equals(test_1.printArray(arrend)));
+		
+	}
+
+	@Test
+	public void testBubbleArray4() {
+		int[] arr4 = {100,95,95,95,96,96,25};
+		int[] arrend = {25 ,95 ,95, 95, 96, 96,100};
+		test_1.bubbleArray(arr4);
+		test_1.printArray(arr4);
+		assertTrue(test_1.printArray(arr4).equals(test_1.printArray(arrend)));
+		
+	}
+
+	@Test
+	public void testBubbleArray5() {
+		int[] arr5 = {-1, -15, -5586, 5956,100,95,99,84,26,48,85,6,21,35,48,78,96,25};
+		int[] arrend = {-5586, -15 ,-1 ,6 ,21 ,25 ,26 ,35 ,48 ,48, 78 ,84 ,85 ,95 ,96 ,99 ,100 ,5956};
+		test_1.bubbleArray(arr5);
+		test_1.printArray(arr5);
+		assertTrue(test_1.printArray(arr5).equals(test_1.printArray(arrend)));
+		
+	}
